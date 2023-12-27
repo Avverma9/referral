@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import axios from "axios";
 import "./Registration.css";
 
@@ -11,7 +11,16 @@ const Registration = () => {
   const [refralCode, setRefralCode] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const navigate= useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { code } = useParams();
+
+  useEffect(() => {
+    // Use the referral code from the path
+    if (code) {
+      setRefralCode(code);
+    }
+  }, [code]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,7 +28,7 @@ const Registration = () => {
     setError(null);
 
     try {
-      const response = await axios.post("https://refferal-zvlf.onrender.com/signup", {
+      const response = await axios.post("http://localhost:5000/signup", {
         name,
         email,
         mobile,
@@ -29,7 +38,7 @@ const Registration = () => {
 
       if (response.status === 201) {
         alert("Registered");
-        navigate("/login")
+        navigate("/login");
       }
     } catch (err) {
       if (err.response) {
@@ -48,7 +57,6 @@ const Registration = () => {
       setLoading(false);
     }
   };
-
   return (
     <div className="registration-container my-5">
       <form onSubmit={handleSubmit}>
@@ -97,12 +105,13 @@ const Registration = () => {
         />
 
         <label htmlFor="refferalLink" className="input-label">
-          Enter referral link (If you have)
+          Refferel code(If you have)
         </label>
         <input
           type="text"
           id="refferalLink"
           value={refralCode}
+          disabled
           onChange={(e) => setRefralCode(e.target.value)}
           className="input-field"
         />

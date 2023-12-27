@@ -16,7 +16,7 @@ export default function Shared() {
       }
 
       const response = await axios.post(
-        "https://refferal-zvlf.onrender.com/getData/user/data",
+        "http://localhost:5000/getData/user/data",
         {
           email: email,
           password: password,
@@ -37,11 +37,12 @@ export default function Shared() {
 
   const handleCopyToClipboard = async () => {
     try {
-      await axios.post("http://localhost:3000/share-refferal-link", {
+      const referralLink = `${window.location.origin}/${data.refferalLink}`;
+      await axios.post("http://localhost:5000/share-refferal-link", {
         email,
       });
 
-      navigator.clipboard.writeText(data.refferalLink);
+      navigator.clipboard.writeText(referralLink);
       alert("Referral link copied to clipboard!");
       fetchData();
     } catch (error) {
@@ -51,12 +52,13 @@ export default function Shared() {
 
   const handleShareByEmail = async () => {
     try {
-      await axios.post("http://localhost:3000/share-refferal-link", {
+      const referralLink = `${window.location.origin}/${data.refferalLink}`;
+      await axios.post("http://localhost:5000/share-refferal-link", {
         email,
       });
 
       const subject = "Check out this referral link!";
-      const body = `Hey, I wanted to share this referral link with you: ${data.refferalLink}`;
+      const body = `Hey, I wanted to share this referral link with you: ${referralLink}`;
       window.location.href = `mailto:?subject=${encodeURIComponent(
         subject
       )}&body=${encodeURIComponent(body)}`;

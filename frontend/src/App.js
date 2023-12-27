@@ -35,7 +35,7 @@ function App() {
         <Header/>
         <Sidebar/>
         <Routes>
-          <Route path='/' element={<Registration />} />
+          <Route path='/:code' element={<Registration />} />
           <Route path='/login' element={<Login/>}/>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/shared' element={<Shared/>}/>
