@@ -8,6 +8,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Profile from './components/Profile/Profile';
 import Shared from './components/Profile/Shared';
 import { useEffect, useState } from 'react';
+import Home from './components/Home/Home';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
           <Route path='/login' element={<Login/>}/>
           <Route path='/profile' element={<Profile/>}/>
           <Route path='/shared' element={<Shared/>}/>
+          <Route path='/home' element={<Home/>}/>
         </Routes>
         <Footer/>
       </Router>
