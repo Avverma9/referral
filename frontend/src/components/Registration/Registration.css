@@ -1,0 +1,84 @@
+/* Registration.css */
+
+.registration-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .input-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+    display: flex;
+  }
+  
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+    outline: none ;
+  }
+  
+  .input-field:focus {
+    border-color: #4caf50;
+  }
+  
+  .submit-button {
+    background-color: #4caf50;
+    color: #fff;
+    padding:7px 70px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    /* width: fit-content; */
+  }
+  
+  .submit-button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+  }
+  
+  .submit-button:hover {
+    background-color: #45a049;
+  }
+  
+  .error-message {
+    color: #ff0000;
+    margin-top: 10px;
+  }
+  
+  /* Additional Styles */
+  .additional-container {
+    margin-top: 20px;
+  }
+  
+  .additional-text {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .link {
+    color: #007bff;
+    text-decoration: none;
+    margin-left: 5px;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
+  
+  .success-message {
+    color: #4caf50;
+    margin-top: 10px;
+  }
+  
