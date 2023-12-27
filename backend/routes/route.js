@@ -4,9 +4,9 @@ const router = express.Router();
 const signup=require('../controllers/signup')
 //--------------------------------------------
 router.post("/signup",signup.createAuthor)
-router.post("/login",signup.login)
-router.post("/getData",signup.getData)
-router.post("/share",signup.share)
+router.post("/login/user",signup.login)
+router.post("/getData/user/data",signup.getData)
+router.post("/share-refferal-link",signup.share)
 //--------------------------------------------
 
 router.all("/*",function(req,res){

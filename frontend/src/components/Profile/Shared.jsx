@@ -16,7 +16,7 @@ export default function Shared() {
       }
 
       const response = await axios.post(
-        "https://refferal-zvlf.onrender.com/getData",
+        "https://refferal-zvlf.onrender.com/getData/user/data",
         {
           email: email,
           password: password,
@@ -37,7 +37,7 @@ export default function Shared() {
 
   const handleCopyToClipboard = async () => {
     try {
-      await axios.post("http://localhost:3000/share", {
+      await axios.post("http://localhost:3000/share-refferal-link", {
         email,
       });
 
@@ -51,7 +51,7 @@ export default function Shared() {
 
   const handleShareByEmail = async () => {
     try {
-      await axios.post("http://localhost:3000/share", {
+      await axios.post("http://localhost:3000/share-refferal-link", {
         email,
       });
 

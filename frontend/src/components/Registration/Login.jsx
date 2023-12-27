@@ -16,7 +16,7 @@ const Login = () => {
       return;
     }
     try {
-      const response = await axios.post("https://refferal-zvlf.onrender.com/login", {
+      const response = await axios.post("https://refferal-zvlf.onrender.com/login/user", {
         email,
         password,
       });
