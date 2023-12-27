@@ -28,7 +28,7 @@ const Registration = () => {
     setError(null);
 
     try {
-      const response = await axios.post("http://localhost:5000/signup", {
+      const response = await axios.post("https://refferal-zvlf.onrender.com/signup", {
         name,
         email,
         mobile,

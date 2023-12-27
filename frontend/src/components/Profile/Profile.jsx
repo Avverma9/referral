@@ -16,7 +16,7 @@ export default function Profile() {
           return;
         }
 
-        const response = await axios.post("http://localhost:5000/getData/user/data", {
+        const response = await axios.post("https://refferal-zvlf.onrender.com/getData/user/data", {
           email: email,
           password: password,
         });
