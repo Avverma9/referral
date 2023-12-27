@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./Shared.css"
+import "./Shared.css";
 export default function Shared() {
   const [data, setData] = useState("");
   const email = localStorage.getItem("email");
@@ -15,10 +15,13 @@ export default function Shared() {
         return;
       }
 
-      const response = await axios.post("https://refferal-zvlf.onrender.com/getData", {
-        email: email,
-        password: password,
-      });
+      const response = await axios.post(
+        "https://refferal-zvlf.onrender.com/getData",
+        {
+          email: email,
+          password: password,
+        }
+      );
 
       if (response.status === 200) {
         setData(response.data.data);
@@ -54,23 +57,10 @@ export default function Shared() {
 
       const subject = "Check out this referral link!";
       const body = `Hey, I wanted to share this referral link with you: ${data.refferalLink}`;
-      window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = `mailto:?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
       fetchData();
-    } catch (error) {
-      console.error("Error sharing data:", error.message);
-    }
-  };
-
-  const handleShare = async () => {
-    try {
-      const response = await axios.post("http://localhost:3000/share", {
-        email,
-      });
-
-      if (response.status === 200) {
-        alert("Shared successfully!");
-        fetchData();
-      }
     } catch (error) {
       console.error("Error sharing data:", error.message);
     }
@@ -82,7 +72,6 @@ export default function Shared() {
       <br />
       <button onClick={handleCopyToClipboard}>Copy to Clipboard</button>
       <button onClick={handleShareByEmail}>Share via Email</button>
-      <button onClick={handleShare}>Share</button>
       <br />
       Shared - {data.sharedCount}
       <br />

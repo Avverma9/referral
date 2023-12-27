@@ -10,7 +10,11 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if (!email || !password) {
+      alert("Please fill mandatory field")
+      console.error("Email and password are required");
+      return;
+    }
     try {
       const response = await axios.post("https://refferal-zvlf.onrender.com/login", {
         email,
@@ -31,23 +35,22 @@ const Login = () => {
   return (
     <div className="login-container my-5">
       <form className="login-form" onSubmit={handleSubmit}>
-        <label htmlFor="email" className="login-label">
-          Email
-        </label>
+      
         <input
           type="text"
           id="email"
+          placeholder="Email"
           value={email}
+        
           onChange={(e) => setEmail(e.target.value)}
           className="login-input"
         />
 
-        <label htmlFor="password" className="login-label">
-          Password
-        </label>
+        
         <input
           type="password"
           id="password"
+          placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="login-input"

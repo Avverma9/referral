@@ -32,7 +32,7 @@ function App() {
     <div className="App">
       <Router>
         <Header/>
-        {loggedin === true && <Sidebar/>}
+        <Sidebar/>
         <Routes>
           <Route path='/' element={<Registration />} />
           <Route path='/login' element={<Login/>}/>

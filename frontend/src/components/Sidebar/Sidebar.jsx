@@ -1,18 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom for navigation
-import "./Sidebar.css"
+import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom/dist";
+import "./Sidebar.css";
 const Sidebar = () => {
-    const handleLogOut=()=>{
-        localStorage.removeItem("email")
-        localStorage.removeItem("password")
-    }
+  const location = useLocation();
+  const handleLogOut = () => {
+    localStorage.removeItem("email");
+    localStorage.removeItem("password");
+  };
+  if (location.pathname !== "/profile" && location.pathname !== "shared") {
+    return null;
+  }
   return (
     <nav className="sidebar">
-      {/* <div className="sidebar-header">
-        <h3>Octa-Trade</h3>
-      </div> */}
-      {/* <hr /> */}
-
       <ul className="list-unstyled components">
         <li>
           <Link to="/profile">Profile</Link>
@@ -21,7 +21,9 @@ const Sidebar = () => {
           <Link to="/shared">Share</Link>
         </li>
         <li>
-          <Link  onClick={handleLogOut} to="/login">Log Out</Link>
+          <Link onClick={handleLogOut} to="/login">
+            Log Out
+          </Link>
         </li>
       </ul>
     </nav>
