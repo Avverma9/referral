@@ -78,6 +78,16 @@ export default function Shared() {
       Shared - {data.sharedCount}
       <br />
       Joined - {data.successRefferal}
+      <div><h4>People who joined</h4>
+      <div>
+  {data.userNameArray && data.userNameArray.length > 0 && data.userNameArray.map((user, index) => (
+    <p key={index}>{index + 1}. {user}</p>
+  ))}
+</div>
+
+
+
+      </div>
     </div>
   );
 }

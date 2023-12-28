@@ -10,38 +10,32 @@ import Shared from './components/Profile/Shared';
 import { useEffect, useState } from 'react';
 import Home from './components/Home/Home';
 
-
 function App() {
+  const [loggedin, setLoggedIn] = useState(false);
 
-  const [loggedin , setLoggedIn] = useState(false) ; 
-
-  
   useEffect(() => {
-    const email = localStorage.getItem('email'); 
-    if(email){
-      setLoggedIn(true); 
-    }
-  
-    else{
+    const email = localStorage.getItem('email');
+    if (email) {
+      setLoggedIn(true);
+    } else {
       setLoggedIn(false);
     }
-  })
-  
-
+  }, []); // Add an empty dependency array to run the effect only once on mount
 
   return (
     <div className="App">
       <Router>
-        <Header/>
-        <Sidebar/>
+        <Header />
+        <Sidebar />
         <Routes>
           <Route path='/:code' element={<Registration />} />
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/profile' element={<Profile/>}/>
-          <Route path='/shared' element={<Shared/>}/>
-          <Route path='/home' element={<Home/>}/>
+          <Route path='/' element={<Registration />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/shared' element={<Shared />} />
+          <Route path='/home' element={<Home />} />
         </Routes>
-        <Footer/>
+        <Footer />
       </Router>
     </div>
   );

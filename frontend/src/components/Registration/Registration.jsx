@@ -13,14 +13,14 @@ const Registration = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const { code } = useParams();
+  const { code: referralCode } = useParams();
 
   useEffect(() => {
     // Use the referral code from the path
-    if (code) {
-      setRefralCode(code);
+    if (referralCode) {
+      setRefralCode(referralCode);
     }
-  }, [code]);
+  }, [referralCode]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,13 +28,16 @@ const Registration = () => {
     setError(null);
 
     try {
-      const response = await axios.post("https://refferal-zvlf.onrender.com/signup", {
-        name,
-        email,
-        mobile,
-        password,
-        refralCode,
-      });
+      const response = await axios.post(
+        "https://refferal-zvlf.onrender.com/signup",
+        {
+          name,
+          email,
+          mobile,
+          password,
+          refralCode,
+        }
+      );
 
       if (response.status === 201) {
         alert("Registered");
@@ -46,9 +49,7 @@ const Registration = () => {
         setError("Registration failed. Please try again.");
       } else if (err.request) {
         console.error("Network Error:", err.request);
-        setError(
-          "Network error. Please check your connection and try again."
-        );
+        setError("Network error. Please check your connection and try again.");
       } else {
         console.error("Error:", err.message);
         setError("An error occurred. Please try again later.");
@@ -57,72 +58,87 @@ const Registration = () => {
       setLoading(false);
     }
   };
+  if (!(location.pathname === "/" || location.pathname.match(/^\/\d+$/))) {
+    return null;
+  }
   return (
-    <div className="registration-container my-5">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name" className="input-label">
-          Name
-        </label>
-        <input
-          type="text"
-          id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="input-field"
-        />
-
-        <label htmlFor="email" className="input-label">
-          Email
-        </label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="input-field"
-        />
-
-        <label htmlFor="mobile" className="input-label">
-          Mobile
-        </label>
-        <input
-          type="text"
-          id="mobile"
-          value={mobile}
-          onChange={(e) => setMobile(e.target.value)}
-          className="input-field"
-        />
-
-        <label htmlFor="password" className="input-label">
-          Password
-        </label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="input-field"
-        />
-
-        <label htmlFor="refferalLink" className="input-label">
-          Refferel code(If you have)
-        </label>
-        <input
-          type="text"
-          id="refferalLink"
-          value={refralCode}
-          disabled
-          onChange={(e) => setRefralCode(e.target.value)}
-          className="input-field"
-        />
-
-        <button type="submit" disabled={loading} className="submit-button my-4">
-          {loading ? "Registering..." : "Register"}
-        </button>
- <p>Already have an account ?</p> <a href="/login">Login</a>
-        {error && <p className="error-message">{error}</p>}
-      </form>
-    </div>
+    <>
+      <div className="registration-container my-5">
+        <div className="left-image">
+          <img
+            src="https://i.pinimg.com/originals/02/fc/da/02fcda11cbfb2a84537f9d059b4c81b2.gif"
+            alt=""
+          />
+        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="header-info">
+            <h4>Create a free account</h4>
+          </div>
+          <br />
+          <br />
+          <label htmlFor="name" className="input-label">
+            Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="input-field"
+          />
+          <label htmlFor="email" className="input-label">
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="input-field"
+          />
+          <label htmlFor="mobile" className="input-label">
+            Mobile
+          </label>
+          <input
+            type="text"
+            id="mobile"
+            value={mobile}
+            onChange={(e) => setMobile(e.target.value)}
+            className="input-field"
+          />
+          <label htmlFor="password" className="input-label">
+            Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="input-field"
+          />
+          <label htmlFor="refferalLink" className="input-label">
+            Refferel code(If you have)
+          </label>
+          <input
+            type="text"
+            id="refferalLink"
+            value={refralCode}
+            disabled
+            onChange={(e) => setRefralCode(e.target.value)}
+            className="input-field"
+          />
+          <button
+            type="submit"
+            disabled={loading}
+            className="submit-button my-4"
+          >
+            {loading ? "Registering..." : "Register"}
+          </button>
+          <p>Already have an account ?</p> <a href="/login">Login</a>
+          {error && <p className="error-message">{error}</p>}
+        </form>
+      </div>
+    </>
   );
 };
 

@@ -3,16 +3,16 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: url('https://assets-v2.lottiefiles.com/a/6beb774c-1166-11ee-a6f1-4788c8724adf/E9TtaYgKZu.gif') left center;
+ 
 }
 
 form {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0);
   padding: 20px;
-  border-radius: 45px;
+ 
   width: 400px; /* Adjust the width as needed */
   text-align: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
 }
 
 .input-row {
@@ -25,10 +25,11 @@ form {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
+  font-family: cursive;
 }
 
 .input-field {
-  width: calc(50% - 5px);
+  width: 300px;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -42,7 +43,7 @@ form {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  width: 100%;
+  width: 20%;
 }
 
 .submit-button:disabled {
@@ -63,4 +64,16 @@ a:hover {
 .error-message {
   color: red;
   margin-top: 10px;
+}
+.header-info {
+  background-color: #f0f0f0; /* Background color for the header-info div */
+  padding: 20px; /* Padding for the header-info div */
+  text-align: center; /* Center the text within the div */
+font-family: cursive;
+}
+
+.header-info h4 {
+  color: #333; /* Text color for the h4 element inside header-info */
+  font-size: 24px; /* Font size for the h4 element */
+  margin: 0; /* Remove margin to prevent spacing around the h4 element */
 }
