@@ -52,9 +52,11 @@
   /* Responsive styles */
   @media (max-width: 600px) {
     .profile-image img {
-      width: 80%; /* Adjust image width for smaller screens */
+      width: 30%; /* Adjust image width for smaller screens */
+    }
+  
+    /* Table styles for smaller screens */
+    table {
+      width: 40%;
     }
   }
-  
-  /* Add more styles based on your design needs */
-  

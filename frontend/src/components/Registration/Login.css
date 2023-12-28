@@ -31,7 +31,7 @@
 }
 
 .login-button {
-  background-color: #0a5a6e;
+  background-color: #05cdff;
   color: white;
   padding: 10px;
   cursor: pointer;
@@ -50,11 +50,24 @@ a {
 a:hover {
   text-decoration: underline;
 }
-/* Add this CSS to your Login.css file or your global styles */
-
-/* Media query for smaller screens */
 @media only screen and (max-width: 600px) {
   .login-form {
-    width: 90%;
+    width: 100%; /* Adjust the width for smaller screens */
+  }
+
+  .login-container {
+    background-size: cover; /* Adjust background size for smaller screens if needed */
+  }
+  .login-right-side-image{
+    width: 150px;
+  }
+  .login-right-side-image img{
+    width: 150px;
+  }
+}
+/* Mobile styles using media queries */
+@media only screen and (max-width: 600px) {
+  .paragraphStyle {
+    font-size: 16px; /* Adjust the font size for smaller screens */
   }
 }

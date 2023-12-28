@@ -40,6 +40,7 @@ const Login = () => {
     textAlign: 'center',
     padding: '5px',
     backgroundColor: '#f0f0f0',
+    
   };
   return (
     <>
@@ -53,7 +54,8 @@ const Login = () => {
           />
         </div>
         <form className="login-form" onSubmit={handleSubmit}>
-        <p style={paragraphStyle}>Welcome to Octa-Trade</p>
+        <p style={paragraphStyle}>
+          Login to Octa-Trade</p>
           <input
             type="text"
             id="email"
