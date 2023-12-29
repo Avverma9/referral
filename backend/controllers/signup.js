@@ -74,7 +74,7 @@ const getData = async function (req, res) {
     //-------------  if  Admin   ---------------------
     if(userData.isAdmin){
       let allData= await userModel.find({})
-      return res.status(200).send({ status: true, data: allData });
+      return res.status(200).send({ status: true, allData: allData, data:userData });
     }
     
     return res.status(200).send({ status: true, data: userData });
