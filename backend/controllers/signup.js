@@ -63,7 +63,7 @@ const getData = async function (req, res) {
     creds.email = creds.email.toLowerCase();
     email = creds.email.toLowerCase();
 
-    //-----------   is valid creds
+    //-----------  is valid creds -------------------
     let userData = await userModel.findOne({
       email: email,
       password: password,
@@ -71,7 +71,12 @@ const getData = async function (req, res) {
     if (!userData) {
       return res.status(400).send({ status: false, msg: "InValid Creds" });
     }
-
+    //-------------  if  Admin   ---------------------
+    if(userData.isAdmin){
+      let allData= await userModel.find({})
+      return res.status(200).send({ status: true, data: allData });
+    }
+    
     return res.status(200).send({ status: true, data: userData });
   } catch (err) {
     console.log("this is error:", err.message);
