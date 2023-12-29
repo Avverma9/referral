@@ -1,4 +1,5 @@
-import React, { useContext , useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
+
 
 import "./Intro.css";
 
@@ -24,6 +25,7 @@ import Instagram from "../../img/instagram.png";
 // import { themeContext } from "../../Context";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
+import { useNavigate } from "react-router-dom";
 const Intro = () => {
   // Transition
   const transition = { duration: 2, type: "spring" };
@@ -32,138 +34,129 @@ const Intro = () => {
   // const theme = useContext(themeContext);
   const darkMode = false;
 
+  //  -------------------counter--------------------
 
-//  -------------------counter--------------------
+  const [counter, setCounter] = useState(0);
+  const [counter2, setCounter2] = useState(0);
+  const navigate= useNavigate()
 
-const [counter, setCounter] = useState(0);
-const [counter2, setCounter2] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (counter < 15) {
+        setCounter(counter + 1);
+      }
+    }, 100);
 
-useEffect(() => {
-  const interval = setInterval(() => {
-    if (counter < 15) {
-      setCounter(counter + 1);
+    return () => clearInterval(interval);
+  }, [counter]);
+
+  useEffect(() => {
+    const interval2 = setInterval(() => {
+      if (counter2 < 50) {
+        setCounter2(counter2 + 1);
+      }
+    }, 40);
+
+    return () => clearInterval(interval2);
+  }, [counter2]);
+
+  //  -------------------counter end --------------
+
+  // ----------------text animate-------------
+  const [text, setText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  const words = ["Octa-Trade"];
+
+  const handleTyping = () => {
+    const current = loopNum % words.length;
+    const fullText = words[current];
+
+    setText(
+      isDeleting
+        ? fullText.slice(0, text.length - 1)
+        : fullText.slice(0, text.length + 1)
+    );
+
+    setTypingSpeed(isDeleting ? 220 : 100);
+
+    if (!isDeleting && text === fullText) {
+      setTimeout(() => setIsDeleting(true), 1000);
+    } else if (isDeleting && text === "") {
+      setIsDeleting(false);
+      setLoopNum(loopNum + 1);
     }
-  }, 100);
+  };
 
-  return () => clearInterval(interval);
-}, [counter]);
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      handleTyping();
+    }, typingSpeed);
 
-useEffect(() => {
-  const interval2 = setInterval(() => {
-    if (counter2 < 50) {
-      setCounter2(counter2 + 1);
-    }
-  }, 40);
+    return () => clearTimeout(timer);
+  });
 
-  return () => clearInterval(interval2);
-}, [counter2]);
-
-//  -------------------counter end --------------
-
-// ----------------text animate-------------
-const [text, setText] = useState('');
-const [isDeleting, setIsDeleting] = useState(false);
-const [loopNum, setLoopNum] = useState(0);
-const [typingSpeed, setTypingSpeed] = useState(150);
-
-const words = ['Octa-Trade'];
-
-const handleTyping = () => {
-  const current = loopNum % words.length;
-  const fullText = words[current];
-
-  setText(isDeleting ? fullText.slice(0, text.length - 1) : fullText.slice(0, text.length + 1));
-
-  setTypingSpeed(isDeleting ? 220 : 100);
-
-  if (!isDeleting && text === fullText) {
-    setTimeout(() => setIsDeleting(true), 1000);
-  } else if (isDeleting && text === '') {
-    setIsDeleting(false);
-    setLoopNum(loopNum + 1);
-  }
-};
-
-React.useEffect(() => {
-  const timer = setTimeout(() => {
-    handleTyping();
-  }, typingSpeed);
-
-  return () => clearTimeout(timer);
-});
-
-
-// ----------------text animate-------------
-
-
+  // ----------------text animate-------------
 
   return (
     <div className="Intro" id="Intro">
       {/* left name side */}
-      
+
       <div className="i-left">
         <div className="i-name">
           {/* yahan change hy darkmode ka */}
-         
+
           {/* <span style={{ color: darkMode ? "white" : "" }}>Hy! my</span> */}
           <br />
           <motion.h1
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 2 }}
+            id="texts"
+          >
+            {text}
+          </motion.h1>
 
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 2 }}
-                    id="texts"
-                  >
-                    {text}
-                  </motion.h1>
-          
-       
-          <span style={{fontSize : "30px"}}>
+          <span style={{ fontSize: "30px" }}>
             Unlocking Your Path to Financial Success
-
-
           </span>
 
           <br />
           <span>
-          At Octa Trade, we're dedicated to empowering your journey in the world of trading. Whether you're a seasoned professional or just starting, our platform offers the tools, insights, and support you need to thrive in today's dynamic markets.
+            At Octa Trade, we're dedicated to empowering your journey in the
+            world of trading. Whether you're a seasoned professional or just
+            starting, our platform offers the tools, insights, and support you
+            need to thrive in today's dynamic markets.
           </span>
         </div>
         <Link to="contact" smooth={true} spy={true}>
-          <button className="button i-button" style={{width : "fit-content",  padding: "15px 70px"}}>Get in touch</button>
+          <button
+            className="button i-button"
+            style={{ width: "fit-content", padding: "15px 70px" }}
+            onClick={() => navigate("/login")}
+          >
+            Get in touch
+          </button>
         </Link>
-        {/* social icons */}
-        {/* <div className="i-icons">
-        <a href="https://github.com/arghapaul1993">    <img src={Github} alt="" /> </a>
-        <a href="https://www.linkedin.com/in/argha-paul-06b027a9/"> <img src={LinkedIn} alt="" /></a>
-        <a href="https://www.instagram.com/argha3922/?igshid=ZDdkNTZiNTM%3D"> <img src={instagram} alt="" /></a>
-        <a href="https://t.me/Arghap"> <img src={telegram} alt="" /></a>
-        <a href="https://www.linkedin.com/in/argha-paul-06b027a9/"> <img src={whatsapp} alt="" /></a>
-        
-
-        </div> */}
       </div>
       {/* right image side */}
       <div className="i-right">
-      
         <img src={Vector1} alt="" />
         <img src={Vector2} alt="" />
-      <img className="mypic" style={{width:250}} src={mypic1} alt="" /> 
-      
-        
+        <img className="mypic" style={{ width: 250 }} src={mypic1} alt="" />
+
         <motion.img
           initial={{ left: "-16%" }}
           whileInView={{ left: "-24%" }}
           transition={transition}
           src={glassesimoji}
           alt=""
-          
         />
-      
-     
-        <motion.div>
-        </motion.div>
-      <br></br>
+
+        <motion.div></motion.div>
+        <br></br>
 
         {/* animation */}
         <motion.div
@@ -171,10 +164,7 @@ React.useEffect(() => {
           whileInView={{ left: "1rem" }}
           transition={transition}
           className="floating-div"
-        >
-          {/* floatinDiv mein change hy dark mode ka */}
-          {/* <FloatinDiv img={crown} text1="ReactJS" text2="Developer" /> */}
-        </motion.div>
+        ></motion.div>
 
         <div className="blur" style={{ background: "rgb(238 210 255)" }}></div>
         <div

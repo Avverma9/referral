@@ -7,10 +7,14 @@ const Sidebar = () => {
   const handleLogOut = () => {
     localStorage.removeItem("email");
     localStorage.removeItem("password");
+    localStorage.removeItem("loggedIn")
+    localStorage.removeItem("owner")
   };
   if (location.pathname !== "/profile" && location.pathname !== "shared") {
     return null;
   }
+  const isAdmin=localStorage.getItem("owner")
+  
   return (
     <nav className="sidebar">
       <ul className="list-unstyled components">
@@ -20,6 +24,11 @@ const Sidebar = () => {
         <li>
           <Link to="/shared">Share</Link>
         </li>
+        {isAdmin && (
+          <li>
+            <Link to="/admin">Admin</Link>
+          </li>
+        )}
         <li>
           <Link onClick={handleLogOut} to="/login">
             Log Out

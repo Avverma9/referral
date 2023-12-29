@@ -38,9 +38,12 @@ export default function Shared() {
   const handleCopyToClipboard = async () => {
     try {
       const referralLink = `${window.location.origin}/${data.refferalLink}`;
-      await axios.post("https://refferal-zvlf.onrender.com/share-refferal-link", {
-        email,
-      });
+      await axios.post(
+        "https://refferal-zvlf.onrender.com/share-refferal-link",
+        {
+          email,
+        }
+      );
 
       navigator.clipboard.writeText(referralLink);
       alert("Referral link copied to clipboard!");
@@ -53,9 +56,12 @@ export default function Shared() {
   const handleShareByEmail = async () => {
     try {
       const referralLink = `${window.location.origin}/${data.refferalLink}`;
-      await axios.post("https://refferal-zvlf.onrender.com/share-refferal-link", {
-        email,
-      });
+      await axios.post(
+        "https://refferal-zvlf.onrender.com/share-refferal-link",
+        {
+          email,
+        }
+      );
 
       const subject = "Check out this referral link!";
       const body = `Hey, I wanted to share this referral link with you: ${referralLink}`;
@@ -78,15 +84,17 @@ export default function Shared() {
       Shared - {data.sharedCount}
       <br />
       Joined - {data.successRefferal}
-      <div><h4>People who joined</h4>
       <div>
-  {data.userNameArray && data.userNameArray.length > 0 && data.userNameArray.map((user, index) => (
-    <p key={index}>{index + 1}. {user}</p>
-  ))}
-</div>
-
-
-
+        <h4>People who joined</h4>
+        <div>
+          {data.userNameArray &&
+            data.userNameArray.length > 0 &&
+            data.userNameArray.map((user, index) => (
+              <p key={index}>
+                {index + 1}. {user}
+              </p>
+            ))}
+        </div>
       </div>
     </div>
   );

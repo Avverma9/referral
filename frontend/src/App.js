@@ -10,6 +10,7 @@ import Shared from './components/Profile/Shared';
 import { useEffect, useState } from 'react';
 import Home from './components/Home/Home';
 import Intro from './components/Intro/Intro'
+import Admin from './components/Admin/Admin';
 
 function App() {
   const [loggedin, setLoggedIn] = useState(false);
@@ -30,11 +31,12 @@ function App() {
         <Sidebar />
         <Routes>
           <Route path='/:code' element={<Registration />} />
-          <Route path='/' element={<Intro />} />
+          <Route path='/' element={<Registration />} />
+          <Route path='/home' element={<Intro />} />
           <Route path='/login' element={<Login />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/shared' element={<Shared />} />
-          <Route path='/home' element={<Home />} />
+          <Route path='/admin' element={<Admin/>} />
         </Routes>
         <Footer />
       </Router>
